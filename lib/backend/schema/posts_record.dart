@@ -35,10 +35,6 @@ abstract class PostsRecord implements Built<PostsRecord, PostsRecordBuilder> {
   Timestamp get createdAt;
 
   @nullable
-  @BuiltValueField(wireName: 'is_validated')
-  bool get isValidated;
-
-  @nullable
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference get reference;
 
@@ -47,8 +43,7 @@ abstract class PostsRecord implements Built<PostsRecord, PostsRecordBuilder> {
     ..description = ''
     ..priority = ''
     ..location = ''
-    ..imageUrl = ''
-    ..isValidated = false;
+    ..imageUrl = '';
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('posts');
@@ -70,7 +65,6 @@ Map<String, dynamic> createPostsRecordData({
   String imageUrl,
   DocumentReference user,
   Timestamp createdAt,
-  bool isValidated,
 }) =>
     serializers.serializeWith(
         PostsRecord.serializer,
@@ -81,8 +75,7 @@ Map<String, dynamic> createPostsRecordData({
           ..location = location
           ..imageUrl = imageUrl
           ..user = user
-          ..createdAt = createdAt
-          ..isValidated = isValidated));
+          ..createdAt = createdAt));
 
 PostsRecord get dummyPostsRecord {
   final builder = PostsRecordBuilder()
@@ -91,8 +84,7 @@ PostsRecord get dummyPostsRecord {
     ..priority = dummyString
     ..location = dummyString
     ..imageUrl = dummyImagePath
-    ..createdAt = dummyTimestamp
-    ..isValidated = dummyBoolean;
+    ..createdAt = dummyTimestamp;
   return builder.build();
 }
 

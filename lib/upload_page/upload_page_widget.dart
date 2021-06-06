@@ -285,7 +285,6 @@ class _UploadPageWidgetState extends State<UploadPageWidget> {
                           final imageUrl = uploadedFileUrl;
                           final user = currentUserReference;
                           final createdAt = getCurrentTimestamp;
-                          final isValidated = false;
 
                           final postsRecordData = createPostsRecordData(
                             title: title,
@@ -295,7 +294,6 @@ class _UploadPageWidgetState extends State<UploadPageWidget> {
                             imageUrl: imageUrl,
                             user: user,
                             createdAt: createdAt,
-                            isValidated: isValidated,
                           );
 
                           await PostsRecord.collection
