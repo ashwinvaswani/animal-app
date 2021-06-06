@@ -21,71 +21,102 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
     return Scaffold(
       key: scaffoldKey,
       body: SafeArea(
-        child: Align(
-          alignment: Alignment(0, 0),
-          child: Container(
-            width: 230,
-            height: 44,
-            child: Stack(
-              children: [
-                Align(
-                  alignment: Alignment(0, 0),
-                  child: FFButtonWidget(
-                    onPressed: () async {
-                      final user = await signInWithGoogle(context);
-                      if (user == null) {
-                        return;
-                      }
-                      await Navigator.pushAndRemoveUntil(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => HomePageWidget(),
+        child: Column(
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            Align(
+              alignment: Alignment(0, 0),
+              child: Container(
+                width: 230,
+                height: 44,
+                child: Stack(
+                  children: [
+                    Align(
+                      alignment: Alignment(0, 0),
+                      child: FFButtonWidget(
+                        onPressed: () async {
+                          final user = await signInWithGoogle(context);
+                          if (user == null) {
+                            return;
+                          }
+                          await Navigator.pushAndRemoveUntil(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => HomePageWidget(),
+                            ),
+                            (r) => false,
+                          );
+                        },
+                        text: 'Sign in with Google',
+                        icon: Icon(
+                          Icons.add,
+                          color: Colors.transparent,
+                          size: 20,
                         ),
-                        (r) => false,
-                      );
-                    },
-                    text: 'Sign in with Google',
-                    icon: Icon(
-                      Icons.add,
-                      color: Colors.transparent,
-                      size: 20,
-                    ),
-                    options: FFButtonOptions(
-                      width: 230,
-                      height: 44,
-                      color: Colors.white,
-                      textStyle: GoogleFonts.getFont(
-                        'Roboto',
-                        color: Color(0xFF606060),
-                        fontSize: 17,
+                        options: FFButtonOptions(
+                          width: 230,
+                          height: 44,
+                          color: Colors.white,
+                          textStyle: GoogleFonts.getFont(
+                            'Roboto',
+                            color: Color(0xFF606060),
+                            fontSize: 17,
+                          ),
+                          elevation: 4,
+                          borderSide: BorderSide(
+                            color: Colors.transparent,
+                            width: 0,
+                          ),
+                          borderRadius: 12,
+                        ),
                       ),
-                      elevation: 4,
-                      borderSide: BorderSide(
-                        color: Colors.transparent,
-                        width: 0,
-                      ),
-                      borderRadius: 12,
                     ),
-                  ),
+                    Align(
+                      alignment: Alignment(-0.83, 0),
+                      child: Container(
+                        width: 22,
+                        height: 22,
+                        clipBehavior: Clip.antiAlias,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                        ),
+                        child: Image.network(
+                          'https://i0.wp.com/nanophorm.com/wp-content/uploads/2018/04/google-logo-icon-PNG-Transparent-Background.png?w=1000&ssl=1',
+                          fit: BoxFit.contain,
+                        ),
+                      ),
+                    )
+                  ],
                 ),
-                Align(
-                  alignment: Alignment(-0.83, 0),
-                  child: Container(
-                    width: 22,
-                    height: 22,
-                    clipBehavior: Clip.antiAlias,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                    ),
-                    child: Image.network(
-                      'https://i0.wp.com/nanophorm.com/wp-content/uploads/2018/04/google-logo-icon-PNG-Transparent-Background.png?w=1000&ssl=1',
-                      fit: BoxFit.contain,
-                    ),
-                  ),
-                )
-              ],
+              ),
             ),
-          ),
+            FFButtonWidget(
+              onPressed: () async {
+                await Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => HomePageWidget(),
+                  ),
+                  (r) => false,
+                );
+              },
+              text: 'Skip',
+              options: FFButtonOptions(
+                width: 130,
+                height: 40,
+                color: Color(0xFF898E97),
+                textStyle: FlutterFlowTheme.subtitle2.override(
+                  fontFamily: 'Poppins',
+                  color: Colors.white,
+                ),
+                borderSide: BorderSide(
+                  color: Colors.transparent,
+                  width: 1,
+                ),
+                borderRadius: 12,
+              ),
+            )
+          ],
         ),
       ),
     );

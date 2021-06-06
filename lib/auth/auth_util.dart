@@ -52,6 +52,8 @@ String get currentUserDisplayName => currentUser?.user?.displayName ?? '';
 
 String get currentUserPhoto => currentUser?.user?.photoURL ?? '';
 
+String get currentPhoneNumber => currentUser?.user?.phoneNumber ?? '';
+
 // Set when using phone verification (after phone number is provided).
 String _phoneAuthVerificationCode;
 
