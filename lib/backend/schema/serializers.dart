@@ -3,16 +3,16 @@ import 'package:built_value/serializer.dart';
 import 'package:built_value/standard_json_plugin.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import 'posts_record.dart';
 import 'users_record.dart';
+import 'posts_record.dart';
 
 part 'serializers.g.dart';
 
 const kDocumentReferenceField = 'Document__Reference__Field';
 
 @SerializersFor(const [
-  PostsRecord,
   UsersRecord,
+  PostsRecord,
 ])
 final Serializers serializers = (_$serializers.toBuilder()
       ..add(DocumentReferenceSerializer())

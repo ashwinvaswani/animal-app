@@ -18,21 +18,25 @@ abstract class PostsRecord implements Built<PostsRecord, PostsRecordBuilder> {
   String get description;
 
   @nullable
+  String get location;
+
+  @nullable
   String get priority;
 
   @nullable
-  String get location;
+  DocumentReference get user;
 
   @nullable
   @BuiltValueField(wireName: 'image_url')
   String get imageUrl;
 
   @nullable
-  DocumentReference get user;
-
-  @nullable
   @BuiltValueField(wireName: 'created_at')
   Timestamp get createdAt;
+
+  @nullable
+  @BuiltValueField(wireName: 'is_validated')
+  int get isValidated;
 
   @nullable
   @BuiltValueField(wireName: kDocumentReferenceField)
@@ -41,9 +45,10 @@ abstract class PostsRecord implements Built<PostsRecord, PostsRecordBuilder> {
   static void _initializeBuilder(PostsRecordBuilder builder) => builder
     ..title = ''
     ..description = ''
-    ..priority = ''
     ..location = ''
-    ..imageUrl = '';
+    ..priority = ''
+    ..imageUrl = ''
+    ..isValidated = 0;
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('posts');
@@ -60,31 +65,34 @@ abstract class PostsRecord implements Built<PostsRecord, PostsRecordBuilder> {
 Map<String, dynamic> createPostsRecordData({
   String title,
   String description,
-  String priority,
   String location,
-  String imageUrl,
+  String priority,
   DocumentReference user,
+  String imageUrl,
   Timestamp createdAt,
+  int isValidated,
 }) =>
     serializers.serializeWith(
         PostsRecord.serializer,
         PostsRecord((p) => p
           ..title = title
           ..description = description
-          ..priority = priority
           ..location = location
-          ..imageUrl = imageUrl
+          ..priority = priority
           ..user = user
-          ..createdAt = createdAt));
+          ..imageUrl = imageUrl
+          ..createdAt = createdAt
+          ..isValidated = isValidated));
 
 PostsRecord get dummyPostsRecord {
   final builder = PostsRecordBuilder()
     ..title = dummyString
     ..description = dummyString
-    ..priority = dummyString
     ..location = dummyString
+    ..priority = dummyString
     ..imageUrl = dummyImagePath
-    ..createdAt = dummyTimestamp;
+    ..createdAt = dummyTimestamp
+    ..isValidated = dummyInteger;
   return builder.build();
 }
 
