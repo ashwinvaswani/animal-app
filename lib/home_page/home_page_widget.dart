@@ -119,7 +119,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                               Align(
                                 alignment: Alignment(0, 0),
                                 child: Text(
-                                  'Location',
+                                  listViewPostsRecord.location,
                                   textAlign: TextAlign.start,
                                   style: FlutterFlowTheme.bodyText1.override(
                                     fontFamily: 'Poppins',
@@ -127,7 +127,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                 ),
                               ),
                               Text(
-                                'Priority',
+                                listViewPostsRecord.priority,
                                 style: FlutterFlowTheme.bodyText1.override(
                                   fontFamily: 'Poppins',
                                 ),
