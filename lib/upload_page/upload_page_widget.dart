@@ -283,6 +283,8 @@ class _UploadPageWidgetState extends State<UploadPageWidget> {
                           final priority = textController2.text;
                           final location = textController3.text;
                           final imageUrl = uploadedFileUrl;
+                          final user = currentUserReference;
+                          final createdAt = getCurrentTimestamp;
 
                           final postsRecordData = createPostsRecordData(
                             title: title,
@@ -290,6 +292,8 @@ class _UploadPageWidgetState extends State<UploadPageWidget> {
                             priority: priority,
                             location: location,
                             imageUrl: imageUrl,
+                            user: user,
+                            createdAt: createdAt,
                           );
 
                           await PostsRecord.collection
