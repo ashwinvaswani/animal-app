@@ -60,7 +60,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
         child: StreamBuilder<List<PostsRecord>>(
           stream: queryPostsRecord(
             queryBuilder: (postsRecord) => postsRecord
-                .where('is_validated', isGreaterThan: 0)
+                .where('is_validated', isEqualTo: 0)
                 .orderBy('created_at', descending: true),
           ),
           builder: (context, snapshot) {
