@@ -61,8 +61,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
           stream: queryPostsRecord(
             queryBuilder: (postsRecord) => postsRecord
                 .where('is_validated', isEqualTo: 1)
-                .orderBy('created_at', descending: true)
-                .orderBy('priority', descending: true),
+                .orderBy('priority', descending: true)
+                .orderBy('created_at', descending: true),
           ),
           builder: (context, snapshot) {
             // Customize what your widget looks like when it's loading.
