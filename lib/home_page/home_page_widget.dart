@@ -59,8 +59,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
       body: SafeArea(
         child: StreamBuilder<List<PostsRecord>>(
           stream: queryPostsRecord(
-            queryBuilder: (postsRecord) =>
-                postsRecord.where('is_validated', isEqualTo: 1),
+            queryBuilder: (postsRecord) => postsRecord
+                .where('is_validated', isEqualTo: 1)
+                .orderBy('created_at', descending: true),
           ),
           builder: (context, snapshot) {
             // Customize what your widget looks like when it's loading.
